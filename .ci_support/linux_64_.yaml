@@ -1,0 +1,42 @@
+c_compiler:
+- gcc
+c_compiler_version:
+- '9'
+cdt_name:
+- cos6
+channel_sources:
+- conda-forge,defaults
+channel_targets:
+- conda-forge main
+cxx_compiler:
+- gxx
+cxx_compiler_version:
+- '9'
+docker_image:
+- quay.io/condaforge/linux-anvil-comp7
+glib:
+- '2'
+gst_plugins_base:
+- '1.18'
+gstreamer:
+- '1.18'
+libxml2:
+- '2.9'
+openssl:
+- 1.1.1
+perl:
+- 5.26.2
+pin_run_as_build:
+  libxml2:
+    max_pin: x.x
+  openssl:
+    max_pin: x.x.x
+  perl:
+    max_pin: x.x.x
+target_platform:
+- linux-64
+zip_keys:
+- - c_compiler_version
+  - cxx_compiler_version
+- - cdt_name
+  - docker_image
