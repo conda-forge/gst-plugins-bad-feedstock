@@ -10,7 +10,7 @@ source:
   sha256: 74e806bc5595b18c70e9ca93571e27e79dfb808e5d2e7967afa952b52e99c85f
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win or osx]
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
@@ -51,6 +51,7 @@ requirements:
     - openssl
     - xorg-libx11  # [linux]
     - libxml2
+    - libsndfile
   run:
     - gstreamer
     - gst-plugins-base
