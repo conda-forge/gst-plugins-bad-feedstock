@@ -52,10 +52,12 @@ requirements:
     - xorg-libx11  # [linux]
     - libxml2
     - libsndfile
+    - libopus
   run:
     - gstreamer
     - gst-plugins-base
     - xorg-libx11  # [linux]
+    - libopus
 
 test:
   commands:
