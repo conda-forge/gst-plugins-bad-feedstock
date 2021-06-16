@@ -10,8 +10,8 @@ source:
   sha256: 74e806bc5595b18c70e9ca93571e27e79dfb808e5d2e7967afa952b52e99c85f
 
 build:
-  number: 1
-  skip: true  # [win or osx]
+  number: 2
+  skip: true  # [osx]
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -37,10 +37,11 @@ requirements:
     - {{ cdt('libselinux-devel') }}      # [linux]
     - pkg-config
     - perl
-    - libtool
+    - libtool  # [unix]
     - meson
     - ninja
   host:
+    - libiconv
     - gstreamer
     - gst-plugins-base
     - gobject-introspection  # [linux]
@@ -61,17 +62,33 @@ requirements:
 
 test:
   commands:
-    - test -f $PREFIX/lib/libgstallocators-1.0${SHLIB_EXT}
-    - test -f $PREFIX/lib/libgstapp-1.0${SHLIB_EXT}
-    - test -f $PREFIX/lib/libgstaudio-1.0${SHLIB_EXT}
-    - test -f $PREFIX/lib/libgstfft-1.0${SHLIB_EXT}
-    - test -f $PREFIX/lib/libgstpbutils-1.0${SHLIB_EXT}
-    - test -f $PREFIX/lib/libgstriff-1.0${SHLIB_EXT}
-    - test -f $PREFIX/lib/libgstrtp-1.0${SHLIB_EXT}
-    - test -f $PREFIX/lib/libgstrtsp-1.0${SHLIB_EXT}
-    - test -f $PREFIX/lib/libgstsdp-1.0${SHLIB_EXT}
-    - test -f $PREFIX/lib/libgsttag-1.0${SHLIB_EXT}
-    - test -f $PREFIX/lib/libgstvideo-1.0${SHLIB_EXT}
+    - test -f $PREFIX/lib/gstreamer-1.0/libgstaiff${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/gstreamer-1.0/libgstaudiovisualizers${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/gstreamer-1.0/libgstcoloreffects${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/gstreamer-1.0/libgstfbdevsink${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/gstreamer-1.0/libgstgeometrictransform${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/gstreamer-1.0/libgstjpegformat${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/gstreamer-1.0/libgstmpegpsmux${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/gstreamer-1.0/libgstrtmp2${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/gstreamer-1.0/libgstsndfile${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/gstreamer-1.0/libgsttranscode${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/gstreamer-1.0/libgstvideofiltersbad${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/gstreamer-1.0/libgstvideoparsersbad${SHLIB_EXT}  # [not win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstaiff.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstaudiovisualizers.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstcoloreffects.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstd3d.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstdirectsoundsrc.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstgeometrictransform.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstjpegformat.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstmpegpsmux.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstrtmp2.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstsndfile.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gsttranscode.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstvideofiltersbad.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstvideoparsersbad.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstwasapi.dll exit 1  # [win]
+    - gst-inspect-1.0 --plugin audiovisualizers
 
 about:
   home: http://gstreamer.freedesktop.org/
