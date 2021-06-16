@@ -41,6 +41,7 @@ requirements:
     - meson
     - ninja
   host:
+    - libiconv
     - gstreamer
     - gst-plugins-base
     - gobject-introspection  # [linux]
