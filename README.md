@@ -143,5 +143,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@kuepe-sl](https://github.com/kuepe-sl/)
 * [@scopatz](https://github.com/scopatz/)
 
