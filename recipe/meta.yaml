@@ -1,5 +1,5 @@
 {% set name = "gst-plugins-bad" %}
-{% set version = "1.18.4" %}
+{% set version = "1.18.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-{{ version }}.tar.xz
-  sha256: 74e806bc5595b18c70e9ca93571e27e79dfb808e5d2e7967afa952b52e99c85f
+  sha256: a164923b94f0d08578a6fcaeaac6e0c05da788a46903a1086870e9ca45ad678e
 
 build:
-  number: 2
+  number: 0
   skip: true  # [osx]
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
@@ -94,7 +94,7 @@ about:
   home: http://gstreamer.freedesktop.org/
   license: LGPL-2.1-or-later
   license_file: COPYING
-  summary: "GStreamer Bad Plug-ins"
+  summary: GStreamer Bad Plug-ins
   dev_url: https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad
 
 extra:
