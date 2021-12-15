@@ -11,6 +11,10 @@ meson_options=(
       -Dtests=disabled
 )
 
+if [ $(uname) = "Darwin" ] ; then
+   meson_options+=(-Dintrospection=enabled)
+ fi
+
 meson --prefix=${PREFIX} \
       --buildtype=release \
       --libdir=$PREFIX/lib \
