@@ -1,5 +1,5 @@
 {% set name = "gst-plugins-bad" %}
-{% set version = "1.18.5" %}
+{% set version = "1.20.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-{{ version }}.tar.xz
-  sha256: a164923b94f0d08578a6fcaeaac6e0c05da788a46903a1086870e9ca45ad678e
+  sha256: 015b8d4d9a395ebf444d40876867a2034dd3304b3ad48bc3a0dd0c1ee71dc11d
 
 build:
-  number: 3
+  number: 0
   skip: true  # [osx]
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
