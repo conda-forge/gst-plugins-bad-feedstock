@@ -11,7 +11,7 @@ glib:
 gst_plugins_base:
 - '1.18'
 gstreamer:
-- '1.18'
+- '1.20'
 libiconv:
 - '1.16'
 libxml2:
