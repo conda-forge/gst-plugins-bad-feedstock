@@ -19,20 +19,15 @@ glib:
 gst_plugins_base:
 - '1.20'
 gstreamer:
-- '1.20'
+- '1.21'
 libiconv:
-- '1.16'
+- '1'
 libxml2:
-- '2.9'
+- '2.10'
 openssl:
 - 1.1.1
 perl:
 - 5.32.1
-pin_run_as_build:
-  libiconv:
-    max_pin: x.x
-  libxml2:
-    max_pin: x.x
 target_platform:
 - linux-64
 zip_keys:
