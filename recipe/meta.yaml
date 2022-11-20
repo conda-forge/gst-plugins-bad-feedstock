@@ -1,5 +1,5 @@
 {% set name = "gst-plugins-bad" %}
-{% set version = "1.20.3" %}
+{% set version = "1.21.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-{{ version }}.tar.xz
-  sha256: 7a11c13b55dd1d2386dd902219e41cbfcdda8e1e0aa3e738186c95074b35da4f
+  sha256: 92fb4556e867d368f11178f659451a1110be2dcb71f54a1c00bc2173315d7697
 
 build:
   number: 1
