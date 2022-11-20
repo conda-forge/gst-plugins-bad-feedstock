@@ -9,11 +9,13 @@ cxx_compiler:
 glib:
 - '2'
 gst_plugins_base:
-- '1.20'
+- '1.21'
 gstreamer:
 - '1.21'
 libiconv:
 - '1'
+libsndfile:
+- '1.1'
 libxml2:
 - '2.10'
 openssl:
