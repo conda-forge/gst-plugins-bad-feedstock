@@ -43,7 +43,8 @@ requirements:
     # hmaarrfk 2022/11/20
     # Ensure that we have a consistent version of openssl
     # between build and host to avoid compilation problems in windows
-    - openssl  
+    - openssl
+    - zlib
   host:
     - libiconv
     - gstreamer
