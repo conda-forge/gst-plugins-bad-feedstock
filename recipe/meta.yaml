@@ -54,6 +54,10 @@ requirements:
     - libxml2
     - libsndfile
     - libopus
+    # hmaarrfk
+    # I'm pretty sure when we removed the static libraries
+    # pkgconfig stopped working for anything that links privately to zlib
+    - zlib
   run:
     - gstreamer
     - gst-plugins-base
