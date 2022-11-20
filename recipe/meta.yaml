@@ -40,6 +40,10 @@ requirements:
     - libtool  # [unix]
     - meson
     - ninja
+    # hmaarrfk 2022/11/20
+    # Ensure that we have a consistent version of openssl
+    # between build and host to avoid compilation problems in windows
+    - openssl  
   host:
     - libiconv
     - gstreamer
