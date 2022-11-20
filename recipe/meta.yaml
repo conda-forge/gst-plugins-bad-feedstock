@@ -64,10 +64,7 @@ requirements:
     # pkgconfig stopped working for anything that links privately to zlib
     - zlib
   run:
-    - gstreamer
-    - gst-plugins-base
     - xorg-libx11  # [linux]
-    - libopus
 
 test:
   commands:
