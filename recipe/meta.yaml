@@ -101,7 +101,7 @@ about:
   license: LGPL-2.1-or-later
   license_file: COPYING
   summary: GStreamer Bad Plug-ins
-  dev_url: https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad
+  dev_url: https://gitlab.freedesktop.org/gstreamer/gstreamer/-/tree/main/subprojects/gst-plugins-bad
 
 extra:
   recipe-maintainers:
