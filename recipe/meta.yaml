@@ -1,5 +1,5 @@
 {% set name = "gst-plugins-bad" %}
-{% set version = "1.20.3" %}
+{% set version = "1.21.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-{{ version }}.tar.xz
-  sha256: 7a11c13b55dd1d2386dd902219e41cbfcdda8e1e0aa3e738186c95074b35da4f
+  sha256: 92fb4556e867d368f11178f659451a1110be2dcb71f54a1c00bc2173315d7697
 
 build:
-  number: 0
+  number: 1
   skip: true  # [osx]
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
@@ -40,6 +40,11 @@ requirements:
     - libtool  # [unix]
     - meson
     - ninja
+    # hmaarrfk 2022/11/20
+    # Ensure that we have a consistent version of openssl
+    # between build and host to avoid compilation problems in windows
+    - openssl
+    - zlib
   host:
     - libiconv
     - gstreamer
@@ -54,11 +59,12 @@ requirements:
     - libxml2
     - libsndfile
     - libopus
+    # hmaarrfk
+    # I'm pretty sure when we removed the static libraries
+    # pkgconfig stopped working for anything that links privately to zlib
+    - zlib
   run:
-    - gstreamer
-    - gst-plugins-base
     - xorg-libx11  # [linux]
-    - libopus
 
 test:
   commands:
@@ -95,7 +101,7 @@ about:
   license: LGPL-2.1-or-later
   license_file: COPYING
   summary: GStreamer Bad Plug-ins
-  dev_url: https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad
+  dev_url: https://gitlab.freedesktop.org/gstreamer/gstreamer/-/tree/main/subprojects/gst-plugins-bad
 
 extra:
   recipe-maintainers:
