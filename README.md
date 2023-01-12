@@ -9,7 +9,7 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gst-plugins-bad
 
 Summary: GStreamer Bad Plug-ins
 
-Development: https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad
+Development: https://gitlab.freedesktop.org/gstreamer/gstreamer/-/tree/main/subprojects/gst-plugins-bad
 
 Current build status
 ====================
