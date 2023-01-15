@@ -11,11 +11,6 @@ meson_options=(
       -Dtests=disabled
 )
 
-#if [ $(uname) = "Linux" ] ; then
-#  # v4l2 contains clock_gettime, resulting in linker error
-#  meson_options+=(-Dv4l2=disabled)
-#fi
-
 meson --prefix=${PREFIX} \
       --buildtype=release \
       --libdir=$PREFIX/lib \
