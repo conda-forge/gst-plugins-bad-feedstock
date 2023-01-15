@@ -11,6 +11,8 @@ source:
 
 build:
   number: 0
+  skip: true  # [not osx]
+  skip: true  # [openssl==3]
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
