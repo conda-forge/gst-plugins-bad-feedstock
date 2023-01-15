@@ -10,7 +10,7 @@ source:
   sha256: 92fb4556e867d368f11178f659451a1110be2dcb71f54a1c00bc2173315d7697
 
 build:
-  number: 1
+  number: 2
   skip: true  # [osx]
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
@@ -107,3 +107,4 @@ extra:
   recipe-maintainers:
     - scopatz
     - kuepe-sl
+    - hmaarrfk
