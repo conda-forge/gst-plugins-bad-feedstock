@@ -11,7 +11,6 @@ source:
 
 build:
   number: 0
-  skip: true  # [osx]
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -65,13 +64,15 @@ requirements:
     - zlib
   run:
     - xorg-libx11  # [linux]
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
 
 test:
   commands:
+    # fbdevsink = Linux framebuffer video sink
+    - test -f $PREFIX/lib/gstreamer-1.0/libgstfbdevsink${SHLIB_EXT}  # [linux]
     - test -f $PREFIX/lib/gstreamer-1.0/libgstaiff${SHLIB_EXT}  # [not win]
     - test -f $PREFIX/lib/gstreamer-1.0/libgstaudiovisualizers${SHLIB_EXT}  # [not win]
     - test -f $PREFIX/lib/gstreamer-1.0/libgstcoloreffects${SHLIB_EXT}  # [not win]
-    - test -f $PREFIX/lib/gstreamer-1.0/libgstfbdevsink${SHLIB_EXT}  # [not win]
     - test -f $PREFIX/lib/gstreamer-1.0/libgstgeometrictransform${SHLIB_EXT}  # [not win]
     - test -f $PREFIX/lib/gstreamer-1.0/libgstjpegformat${SHLIB_EXT}  # [not win]
     - test -f $PREFIX/lib/gstreamer-1.0/libgstmpegpsmux${SHLIB_EXT}  # [not win]
