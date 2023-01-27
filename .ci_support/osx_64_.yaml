@@ -16,10 +16,6 @@ cxx_compiler_version:
 - '14'
 glib:
 - '2'
-gst_plugins_base:
-- '1.21'
-gstreamer:
-- '1.21'
 libiconv:
 - '1'
 libsndfile:

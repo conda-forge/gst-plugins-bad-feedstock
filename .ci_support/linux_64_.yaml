@@ -16,10 +16,6 @@ docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 glib:
 - '2'
-gst_plugins_base:
-- '1.21'
-gstreamer:
-- '1.21'
 libiconv:
 - '1'
 libsndfile:
