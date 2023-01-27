@@ -46,8 +46,8 @@ requirements:
     - zlib
   host:
     - libiconv
-    - gstreamer
-    - gst-plugins-base
+    - gstreamer         {{ version }}
+    - gst-plugins-base  {{ version }}
     - gobject-introspection  # [linux]
     - glib
     - gettext                            # [osx]
