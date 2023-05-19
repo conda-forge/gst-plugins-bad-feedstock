@@ -1,11 +1,11 @@
-About gst-plugins-bad
-=====================
+About gst-plugins-bad-feedstock
+===============================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gst-plugins-bad-feedstock/blob/main/LICENSE.txt)
 
 Home: http://gstreamer.freedesktop.org/
 
 Package license: LGPL-2.1-or-later
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gst-plugins-bad-feedstock/blob/main/LICENSE.txt)
 
 Summary: GStreamer Bad Plug-ins
 
