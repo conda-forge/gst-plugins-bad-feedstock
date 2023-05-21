@@ -11,9 +11,7 @@ meson_options=(
       -Dtests=disabled
 )
 
-meson --prefix=${PREFIX} \
-      --buildtype=release \
-      --libdir=$PREFIX/lib \
+meson ${MESON_ARGS} \
       --wrap-mode=nofallback \
       "${meson_options[@]}" \
       ..
