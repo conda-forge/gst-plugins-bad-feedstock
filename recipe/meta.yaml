@@ -50,7 +50,7 @@ requirements:
     - gstreamer         {{ version }}
     - gst-plugins-base  {{ version }}
     - gobject-introspection  # [linux]
-    - libglib
+    - glib
     - gettext                            # [osx]
     - libxcb                             # [linux]
     - pthread-stubs                      # [linux]
