@@ -18,7 +18,6 @@ build:
 
 requirements:
   build:
-    - sysroot_linux-64 2.17  # [linux64]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ cdt('libxau-devel') }}          # [linux]
