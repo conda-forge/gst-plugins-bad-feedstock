@@ -24,6 +24,8 @@ libiconv:
 - '1'
 libsndfile:
 - '1.2'
+libxcb:
+- '1.15'
 libxml2:
 - '2.11'
 openssl:
