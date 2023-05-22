@@ -8,7 +8,7 @@ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig:$BUILD_PREFIX/lib/
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" ]]; then
     if [[ "${target_platform}" == "osx-arm64" ]]; then
-        export OBJCPP=${CHOST}-clang
+        export OBJCPP=${CXX}
     fi
 fi
 
