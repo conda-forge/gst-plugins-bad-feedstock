@@ -7,8 +7,8 @@ pushd build
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig:$BUILD_PREFIX/lib/pkgconfig
 
 if [[ "${target_platform}" == "osx-"* ]]; then
-    export OBJCPP=${CXX}
-    export OBJCPP_FOR_BUILD=${OBJCPP_FOR_BUILD}
+    export OBJCXX=${CXX}
+    export OBJCXX_FOR_BUILD=${OBJCPP_FOR_BUILD}
 fi
 
 meson_options=(
