@@ -8,7 +8,7 @@ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig:$BUILD_PREFIX/lib/
 
 if [[ "${target_platform}" == "osx-"* ]]; then
     export OBJCXX=${CXX}
-    export OBJCXX_FOR_BUILD=${OBJCPP_FOR_BUILD}
+    export OBJCXX_FOR_BUILD=${CXX_FOR_BUILD}
 fi
 
 meson_options=(
