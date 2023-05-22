@@ -6,10 +6,8 @@ pushd build
 
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig:$BUILD_PREFIX/lib/pkgconfig
 
-if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" ]]; then
-    if [[ "${target_platform}" == "osx-arm64" ]]; then
-        export OBJCPP=${CXX}
-    fi
+if [[ "${target_platform}" == "osx-arm64" ]]; then
+    export OBJCPP=${CXX}
 fi
 
 meson_options=(
