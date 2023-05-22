@@ -6,7 +6,7 @@ pushd build
 
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig:$BUILD_PREFIX/lib/pkgconfig
 
-if [[ "${target_platform}" == "osx-arm64" ]]; then
+if [[ "${target_platform}" == "osx-"* ]]; then
     export OBJCPP=${CXX}
     export OBJCPP_FOR_BUILD=${OBJCPP_FOR_BUILD}
 fi
