@@ -18,7 +18,7 @@ meson_options=(
 meson ${MESON_ARGS} \
       --wrap-mode=nofallback \
       "${meson_options[@]}" \
-      ..
+      .. || (cat meson-logs/meson-log.txt && exit 1)
 ninja -j${CPU_COUNT}
 ninja install
 
