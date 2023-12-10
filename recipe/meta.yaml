@@ -28,7 +28,6 @@ requirements:
     - pkg-config
     - perl
     - libtool  # [unix]
-    - python 3.11
     - meson 1.2.1
     - ninja
     # hmaarrfk 2022/11/20
