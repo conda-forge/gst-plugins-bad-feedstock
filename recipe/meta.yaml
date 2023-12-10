@@ -28,14 +28,16 @@ requirements:
     - pkg-config
     - perl
     - libtool  # [unix]
-    - meson
+    - python 3.11
+    - meson 1.2.1
     - ninja
     # hmaarrfk 2022/11/20
     # Ensure that we have a consistent version of openssl
     # between build and host to avoid compilation problems in windows
-    - openssl
+    - openssl 3.1
     - zlib
   host:
+    - openssl 3.1
     - libiconv
     - gstreamer         {{ version }}
     - gst-plugins-base  {{ version }}
@@ -44,8 +46,6 @@ requirements:
     - gettext                            # [osx]
     - libxcb                             # [linux]
     - pthread-stubs                      # [linux]
-    - openssl
-    - xorg-libx11  # [linux]
     - libxml2
     - libsndfile
     - libopus
@@ -53,6 +53,7 @@ requirements:
     # I'm pretty sure when we removed the static libraries
     # pkgconfig stopped working for anything that links privately to zlib
     - zlib
+    - xorg-libx11                        # [linux]
     - xorg-libxfixes                     # [linux]
     - xorg-libxext                       # [linux]
     - xorg-xproto                        # [linux]
