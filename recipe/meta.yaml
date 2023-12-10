@@ -10,11 +10,12 @@ source:
   sha256: c716f8dffa8fac3fb646941af1c6ec72fff05a045131311bf2d049fdc87bce2e
 
 build:
-  number: 1
+  number: 0
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
     - {{ pin_subpackage('gst-plugins-bad', max_pin='x.x') }}
+  skip: true                 # [win and py != 311]
   ignore_run_exports_from:   # [win]
     - python                 # [win]
 
