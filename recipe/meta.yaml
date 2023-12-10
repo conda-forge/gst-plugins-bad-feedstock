@@ -15,7 +15,7 @@ build:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
     - {{ pin_subpackage('gst-plugins-bad', max_pin='x.x') }}
-  ignore_ruN_exports_from:    # [win]
+  ignore_run_exports_from:    # [win]
     - python                  # [win]
 
 requirements:
