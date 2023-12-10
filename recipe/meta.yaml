@@ -35,8 +35,6 @@ requirements:
     # finding pkg-config with python 3.12
     - python 3.11            # [win]
     - meson
-    # meson 1.3 complains about pkg-config reuqiring strawberry perl???
-    - meson 1.2  # [win]
     - ninja
     # hmaarrfk 2022/11/20
     # Ensure that we have a consistent version of openssl
