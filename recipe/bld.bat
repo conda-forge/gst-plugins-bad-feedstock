@@ -7,7 +7,16 @@ set "PKG_CONFIG_PATH=%LIBRARY_LIB%\pkgconfig;%LIBRARY_PREFIX%\share\pkgconfig;%B
 :: get mixed path (forward slash) form of prefix so host prefix replacement works
 set "LIBRARY_PREFIX_M=%LIBRARY_PREFIX:\=/%"
 
-%BUILD_PREFIX%\Scripts\meson.exe setup builddir --wrap-mode=nofallback --buildtype=release --prefix=%LIBRARY_PREFIX_M% --backend=ninja -Dexamples=disabled -Dtests=disabled
+pkg-config --debug --exists gstreamer-1.0
+
+meson ^
+    setup builddir ^
+    --wrap-mode=nofallback ^
+    --buildtype=release ^
+    --prefix=%LIBRARY_PREFIX_M% ^
+    --backend=ninja ^
+    -Dexamples=disabled ^
+    -Dtests=disabled
 if errorlevel 1 exit 1
 
 ninja -v -C builddir -j %CPU_COUNT%
