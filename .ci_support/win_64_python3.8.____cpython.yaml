@@ -13,11 +13,17 @@ libiconv:
 libsndfile:
 - '1.2'
 libxml2:
-- '2.12'
+- '2'
 openssl:
 - '3'
 perl:
 - 5.32.1
+pin_run_as_build:
+  python:
+    min_pin: x.x
+    max_pin: x.x
+python:
+- 3.8.* *_cpython
 target_platform:
 - win-64
 zlib:
