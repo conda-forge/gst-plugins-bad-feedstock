@@ -15,8 +15,6 @@ build:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
     - {{ pin_subpackage('gst-plugins-bad', max_pin='x.x') }}
-  ignore_run_exports_from:   # [win]
-    - python                 # [win]
 
 requirements:
   build:
@@ -30,10 +28,6 @@ requirements:
     - pkg-config
     - perl
     - libtool  # [unix]
-    # hmaarrfk 2023/12/10
-    # Meson on windows seems to have a hard time
-    # finding pkg-config with python 3.12
-    - python 3.11            # [win]
     - meson
     - ninja
     # hmaarrfk 2022/11/20
@@ -42,7 +36,6 @@ requirements:
     - openssl
     - zlib
   host:
-    - python 3.11            # [win]
     - libiconv
     - gstreamer         {{ version }}
     - gst-plugins-base  {{ version }}
