@@ -11,6 +11,10 @@ source:
 
 build:
   number: 0
+  # hmaarrfk 2023/12/10
+  # Meson on windows seems to have a hard time
+  # finding pkg-config with python 3.12
+  skip: true  # [win and py!=311]
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -30,19 +34,12 @@ requirements:
     - pkg-config
     - perl
     - libtool  # [unix]
-    # hmaarrfk 2023/12/10
-    # Meson on windows seems to have a hard time
-    # finding pkg-config with python 3.12
-    - python 3.11            # [win]
+    - python              # [win]
     - meson
     - ninja
-    # hmaarrfk 2022/11/20
-    # Ensure that we have a consistent version of openssl
-    # between build and host to avoid compilation problems in windows
-    - openssl
     - zlib
   host:
-    - python 3.11            # [win]
+    - python               # [win]
     - libiconv
     - gstreamer         {{ version }}
     - gst-plugins-base  {{ version }}
