@@ -99,6 +99,7 @@ test:
     - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstvideofiltersbad.dll exit 1  # [win]
     - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstvideoparsersbad.dll exit 1  # [win]
     - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstwasapi.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstnvcodec.dll exit 1    # [win]
     - gst-inspect-1.0 --plugin audiovisualizers
 
 about:
