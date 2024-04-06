@@ -1,5 +1,5 @@
 {% set name = "gst-plugins-bad" %}
-{% set version = "1.22.9" %}
+{% set version = "1.24.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,17 @@ package:
 
 source:
   url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-{{ version }}.tar.xz
-  sha256: 1bc65d0fd5f53a3636564efd3fcf318c3edcdec39c4109a503c1fc8203840a1d
+  sha256: f1a183966ea9136a00f159ee42db4d1d106abef022d1b49e63fba2fcbe50c8f8
+  patches:
+    # https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/3022
+    - disable_d3d11_in_nvcodec.patch
 
 build:
   number: 0
+  # hmaarrfk 2023/12/10
+  # Meson on windows seems to have a hard time
+  # finding pkg-config with python 3.12
+  skip: true  # [win and py!=311]
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -30,19 +37,12 @@ requirements:
     - pkg-config
     - perl
     - libtool  # [unix]
-    # hmaarrfk 2023/12/10
-    # Meson on windows seems to have a hard time
-    # finding pkg-config with python 3.12
-    - python 3.11            # [win]
+    - python              # [win]
     - meson
     - ninja
-    # hmaarrfk 2022/11/20
-    # Ensure that we have a consistent version of openssl
-    # between build and host to avoid compilation problems in windows
-    - openssl
     - zlib
   host:
-    - python 3.11            # [win]
+    - python               # [win]
     - libiconv
     - gstreamer         {{ version }}
     - gst-plugins-base  {{ version }}
@@ -69,6 +69,9 @@ requirements:
     - xorg-libxdamage                    # [linux]
     - xorg-libxxf86vm                    # [linux]
     - xorg-libxau                        # [linux]
+  run:
+    # We want to pin harder than the run_export from gstreamer
+    - gstreamer         {{ version }}
 
 test:
   commands:
@@ -99,6 +102,7 @@ test:
     - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstvideofiltersbad.dll exit 1  # [win]
     - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstvideoparsersbad.dll exit 1  # [win]
     - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstwasapi.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstnvcodec.dll exit 1    # [win]
     - gst-inspect-1.0 --plugin audiovisualizers
 
 about:
