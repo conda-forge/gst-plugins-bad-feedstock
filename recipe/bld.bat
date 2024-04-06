@@ -15,6 +15,7 @@ meson ^
     --buildtype=release ^
     --prefix=%LIBRARY_PREFIX_M% ^
     --backend=ninja ^
+    -Dnvcodec=disabled ^
     -Dexamples=disabled ^
     -Dtests=disabled
 if errorlevel 1 exit 1
