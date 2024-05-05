@@ -34,10 +34,10 @@ requirements:
     - {{ cdt('libdrm-devel') }}          # [linux]
     - {{ cdt('mesa-dri-drivers') }}      # [linux]
     - {{ cdt('libselinux-devel') }}      # [linux]
-    - gettext                            # [osx and build_platform != target_platform]
+    - gettext-tools
     - pkg-config
     - perl
-    - libtool  # [unix]
+    - libtool             # [unix]
     - python              # [win]
     - meson
     - ninja
@@ -49,7 +49,7 @@ requirements:
     - gst-plugins-base  {{ version }}
     - gobject-introspection              # [linux]
     - glib
-    - gettext                            # [osx]
+    - libintl-devel                      # [not linux]
     - libxcb                             # [linux]
     - pthread-stubs                      # [linux]
     - openssl
