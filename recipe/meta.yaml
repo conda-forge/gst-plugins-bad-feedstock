@@ -14,10 +14,6 @@ source:
 
 build:
   number: 0
-  # hmaarrfk 2023/12/10
-  # Meson on windows seems to have a hard time
-  # finding pkg-config with python 3.12
-  skip: true  # [win and py!=311]
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -41,14 +37,12 @@ requirements:
     - pkg-config
     - perl
     - libtool             # [unix]
-    - python              # [win]
     - meson
     - ninja
     - zlib
     # The build glib-mkenums is required in cross-compilation builds
     - glib  # [build_platform != target_platform]
   host:
-    - python               # [win]
     - libiconv
     - gstreamer         {{ version }}
     - gst-plugins-base  {{ version }}
