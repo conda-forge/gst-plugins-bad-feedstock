@@ -29,7 +29,7 @@ libsndfile:
 libxcb:
 - '1'
 libxml2:
-- '2'
+- '2.13'
 openssl:
 - '3'
 perl:
