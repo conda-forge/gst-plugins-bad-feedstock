@@ -32,7 +32,8 @@ requirements:
     - ninja
     - zlib
     # The build glib-mkenums is required in cross-compilation builds
-    - glib  # [build_platform != target_platform]
+    - glib                               # [build_platform != target_platform]
+    - setuptools                         # [build_platform != target_platform]
   host:
     - libgl-devel                        # [linux]
     - libegl-devel                       # [linux]
@@ -42,6 +43,7 @@ requirements:
     - gst-plugins-base  {{ version }}
     - gobject-introspection              # [linux]
     - glib
+    - setuptools
     - libintl-devel                      # [not linux]
     - libxcb                             # [linux]
     - pthread-stubs                      # [linux]
