@@ -8,9 +8,9 @@ package:
 source:
   url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-{{ version }}.tar.xz
   sha256: cb116bfc3722c2de53838899006cafdb3c7c0bc69cd769b33c992a8421a9d844
-  # patches:
-  #   # https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/3022
-  #   - disable_d3d11_in_nvcodec.patch
+  patches:
+    # https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/3022
+    - disable_d3d11_in_nvcodec.patch
 
 build:
   number: 0
