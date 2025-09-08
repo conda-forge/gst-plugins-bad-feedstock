@@ -1,5 +1,5 @@
 {% set name = "gst-plugins-bad" %}
-{% set version = "1.26.3" %}
+{% set version = "1.27.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-{{ version }}.tar.xz
-  sha256: 95c48dacaf14276f4e595f4cbca94b3cfebfc22285e765e2aa56d0a7275d7561
+  sha256: f4ef4afbc0f71762babed8bba7c2dc4dcd90d5a401e0a79bd05f3b95974976d3
   patches:
     # https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/3022
     - disable_d3d11_in_nvcodec.patch
