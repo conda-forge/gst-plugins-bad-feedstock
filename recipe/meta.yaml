@@ -54,7 +54,7 @@ requirements:
     # I'm pretty sure when we removed the static libraries
     # pkgconfig stopped working for anything that links privately to zlib
     - zlib
-    - expat                              # [linux]
+    - expat 
     - xorg-xorgproto                     # [linux]
     - xorg-libx11                        # [linux]
     - xorg-libxfixes                     # [linux]
