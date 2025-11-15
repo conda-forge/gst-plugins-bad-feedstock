@@ -1,5 +1,5 @@
 {% set name = "gst-plugins-bad" %}
-{% set version = "1.26.7" %}
+{% set version = "1.26.8" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-{{ version }}.tar.xz
-  sha256: a0ab17dddd4c029ecd7a423c30badd5a3c7599ea42707016d1d57545f5723ccf
+  sha256: 25c05be5eb0694bde3ecd3317516f5d0d6e4ad21125a5ebcf6fb644a4c92439f
   patches:
     # https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/3022
     - disable_d3d11_in_nvcodec.patch
 
 build:
-  number: 1
+  number: 0
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -54,7 +54,7 @@ requirements:
     # I'm pretty sure when we removed the static libraries
     # pkgconfig stopped working for anything that links privately to zlib
     - zlib
-    - expat                              # [linux]
+    - expat 
     - xorg-xorgproto                     # [linux]
     - xorg-libx11                        # [linux]
     - xorg-libxfixes                     # [linux]
