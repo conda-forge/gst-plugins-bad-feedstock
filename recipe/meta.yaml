@@ -64,9 +64,11 @@ requirements:
     - xorg-libxdamage                    # [linux]
     - xorg-libxxf86vm                    # [linux]
     - xorg-libxau                        # [linux]
+    - xz                                 # [win]
   run:
     # We want to pin harder than the run_export from gstreamer
     - gstreamer         {{ version }}
+    - xz                                 # [win]
 
 test:
   commands:
