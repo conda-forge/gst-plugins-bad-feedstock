@@ -14,6 +14,8 @@ glib:
 - '2'
 libiconv:
 - '1'
+liblzma_devel:
+- '5'
 libsndfile:
 - '1.2'
 libxml2_devel:
