@@ -68,7 +68,6 @@ requirements:
   run:
     # We want to pin harder than the run_export from gstreamer
     - gstreamer         {{ version }}
-    - liblzma-devel                      # [win]
 
 test:
   commands:
