@@ -13,7 +13,7 @@ source:
     - disable_d3d11_in_nvcodec.patch
 
 build:
-  number: 1
+  number: 2
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -64,11 +64,10 @@ requirements:
     - xorg-libxdamage                    # [linux]
     - xorg-libxxf86vm                    # [linux]
     - xorg-libxau                        # [linux]
-    - xz                                 # [win]
+    - liblzma-devel                      # [win]
   run:
     # We want to pin harder than the run_export from gstreamer
     - gstreamer         {{ version }}
-    - xz                                 # [win]
 
 test:
   commands:
