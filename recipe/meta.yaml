@@ -13,7 +13,7 @@ source:
     - disable_d3d11_in_nvcodec.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -47,7 +47,7 @@ requirements:
     - libxcb                             # [linux]
     - pthread-stubs                      # [linux]
     - openssl
-    - libxml2
+    - libxml2-devel
     - libsndfile
     - libopus
     # hmaarrfk
