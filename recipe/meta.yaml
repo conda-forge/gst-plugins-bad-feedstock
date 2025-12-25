@@ -1,5 +1,5 @@
 {% set name = "gst-plugins-bad" %}
-{% set version = "1.26.9" %}
+{% set version = "1.26.10" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-{{ version }}.tar.xz
-  sha256: a96bfb68c53a7c9ab1ae279eac7c101f4204fb5c0e4729683b2be64261707446
+  sha256: fec973dff512b507d9dcb5a828e04e061e52188f4d5989e953aed6a41beda437
   patches:
     # https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/3022
     - disable_d3d11_in_nvcodec.patch
 
 build:
-  number: 2
+  number: 0
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
