@@ -26,6 +26,11 @@ meson_options=(
       -Dtests=disabled
 )
 
+if [ -n "$OSX_ARCH" ] ; then
+	# disable X11 plugins on macOS
+	meson_options+=(-Dx11=disabled)
+fi
+
 meson ${MESON_ARGS} \
       --wrap-mode=nofallback \
       "${meson_options[@]}" \
