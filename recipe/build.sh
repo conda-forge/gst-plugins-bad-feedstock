@@ -4,7 +4,7 @@ set -ex
 mkdir -p build
 pushd build
 
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig:$BUILD_PREFIX/lib/pkgconfig:$BUILD_PREFIX/share/pkgconfig
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig:$PREFIX/share/gir-1.0:$BUILD_PREFIX/lib/pkgconfig:$BUILD_PREFIX/share/gir-1.0
 
 if [[ "${target_platform}" == "osx-"* ]]; then
     export OBJCXX=${CXX}
