@@ -14,8 +14,8 @@ source:
 
 build:
   number: 0
-  skip: true  # [win]
-  skip: true  # [linux]
+  skip: false  # [win]
+  skip: false  # [linux]
   skip: false   # [osx]
 
   run_exports:
