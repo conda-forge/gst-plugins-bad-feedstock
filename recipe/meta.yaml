@@ -14,8 +14,9 @@ source:
 
 build:
   number: 0
-  skip: false  # [win]
-  skip: false  # [linux]
+  skip: true  # [win]
+  skip: true  # [linux]
+  skip: false   # [osx]
 
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
