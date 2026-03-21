@@ -1,5 +1,5 @@
 {% set name = "gst-plugins-bad" %}
-{% set version = "1.28.0" %}
+{% set version = "1.28.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,17 @@ package:
 
 source:
   url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-{{ version }}.tar.xz
-  sha256: 32d825041e5775fc9bf9e8c38e3a5c46c1441eee67f8112572450a9c23c835f0
+  sha256: 56c1593787f8b5550893d59e4ff29e6bcccf34973316fa55e34ce493e04313a2
   patches:
     # https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/3022
     - disable_d3d11_in_nvcodec.patch
 
 build:
   number: 0
+  skip: false  # [win]
+  skip: false  # [linux]
+  skip: false   # [osx]
+
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
     #    https://abi-laboratory.pro/tracker/timeline/gstreamer/
@@ -34,6 +38,8 @@ requirements:
     # The build glib-mkenums is required in cross-compilation builds
     - glib  # [build_platform != target_platform]
     - setuptools
+    - gobject-introspection
+    - gst-plugins-base                   # [unix]
   host:
     - libgl-devel                        # [linux]
     - libegl-devel                       # [linux]
@@ -41,7 +47,7 @@ requirements:
     - libiconv
     - gstreamer         {{ version }}
     - gst-plugins-base  {{ version }}
-    - gobject-introspection              # [linux]
+    - gobject-introspection              
     - glib
     - libintl-devel                      # [not linux]
     - libxcb                             # [linux]
@@ -68,7 +74,6 @@ requirements:
   run:
     # We want to pin harder than the run_export from gstreamer
     - gstreamer         {{ version }}
-
 test:
   commands:
     # fbdevsink = Linux framebuffer video sink

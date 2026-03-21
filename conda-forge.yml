@@ -3,9 +3,10 @@ bot:
   version_updates:
     even_odd_versions: true
 build_platform:
-  linux_aarch64: linux_64
-  linux_ppc64le: linux_64
-  osx_arm64: osx_64
+  linux_64: linux_64
+  linux_aarch64: linux_aarch64
+  linux_ppc64le: linux_ppc64le
+  osx_64: osx_64
 conda_build:
   pkg_format: '2'
 conda_forge_output_validation: true
@@ -13,6 +14,11 @@ github:
   branch_name: main
   tooling_branch_name: main
 provider:
-  linux_aarch64: default
-  linux_ppc64le: default
+  linux_aarch64: azure
+  linux_ppc64le: azure
+  osx_arm64: default
 test: native_and_emulated
+azure:
+  # toggle for storing the conda build_artifacts directory (including the
+  # built packages) as an Azure pipeline artifact that can be downloaded
+  store_build_artifacts: false
