@@ -1,0 +1,130 @@
+schema_version: 1
+
+context:
+  name: gst-plugins-bad
+  version: "1.28.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-${{ version }}.tar.xz
+  sha256: 6467e3964828f4d7d08bfe1fbb4d76287a1c8fa76674e59e101a149c020fefd7
+  patches:
+    # https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/3022
+    - disable_d3d11_in_nvcodec.patch
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - gettext-tools
+    - pkg-config
+    - perl
+    - if: unix
+      then: libtool
+    - meson
+    - ninja
+    - zlib
+    # The build glib-mkenums is required in cross-compilation builds
+    - if: build_platform != target_platform
+      then: glib
+    - setuptools
+    - gobject-introspection
+    - if: unix
+      then: gst-plugins-base
+  host:
+    - if: linux
+      then: 
+        - libgl-devel
+        - libegl-devel
+        - libdrm
+        - libxcb
+        - pthread-stubs
+        - xorg-xorgproto
+        - xorg-libx11
+        - xorg-libxfixes
+        - xorg-libxext
+        - xorg-libx11
+        - xorg-libxrender
+        - xorg-libxdamage
+        - xorg-libxau
+        - xorg-libxxf86vm
+    - libiconv
+    - gstreamer         1.28.2.*
+    - gst-plugins-base  1.28.2.*
+    - gobject-introspection
+    - glib
+    - if: not linux
+      then: libintl-devel
+    - openssl
+    - libxml2-devel
+    - libsndfile
+    - libopus
+    # hmaarrfk
+    # I'm pretty sure when we removed the static libraries
+    # pkgconfig stopped working for anything that links privately to zlib
+    - zlib
+    - expat
+    - if: win
+      then: liblzma-devel
+  run:
+    # We want to pin harder than the run_export from gstreamer
+    - gstreamer         1.28.2.*
+  run_exports:
+    - ${{ pin_subpackage('gst-plugins-bad', upper_bound='x.x') }}
+
+tests:
+  - script:
+      - if: linux
+        then: test -f $PREFIX/lib/gstreamer-1.0/libgstfbdevsink${SHLIB_EXT}
+      - if: not win
+        then: 
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstaiff${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstaudiovisualizers${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstcoloreffects${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstgeometrictransform${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstjpegformat${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstmpegpsmux${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstrtmp2${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstsndfile${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgsttranscode${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstvideofiltersbad${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstvideoparsersbad${SHLIB_EXT}
+      - if: win
+        then: 
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstaiff.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstaudiovisualizers.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstcoloreffects.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstd3d.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstdirectsoundsrc.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstgeometrictransform.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstjpegformat.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstmpegpsmux.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstrtmp2.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstsndfile.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gsttranscode.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstvideofiltersbad.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstvideoparsersbad.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstwasapi.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstnvcodec.dll exit 1
+      - gst-inspect-1.0 --plugin audiovisualizers
+
+about:
+  license: LGPL-2.1-or-later
+  license_file: COPYING
+  summary: GStreamer Bad Plug-ins
+  homepage: http://gstreamer.freedesktop.org/
+  repository: https://gitlab.freedesktop.org/gstreamer/gstreamer/-/tree/main/subprojects/gst-plugins-bad
+
+extra:
+  recipe-maintainers:
+    - yishai1999
+    - tjwilli58
+    - scopatz
+    - kuepe-sl
