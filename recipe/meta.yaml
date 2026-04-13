@@ -1,5 +1,5 @@
 {% set name = "gst-plugins-bad" %}
-{% set version = "1.28.1" %}
+{% set version = "1.28.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-{{ version }}.tar.xz
-  sha256: 56c1593787f8b5550893d59e4ff29e6bcccf34973316fa55e34ce493e04313a2
+  sha256: 6467e3964828f4d7d08bfe1fbb4d76287a1c8fa76674e59e101a149c020fefd7
   patches:
     # https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/3022
     - disable_d3d11_in_nvcodec.patch
@@ -16,7 +16,7 @@ build:
   number: 0
   skip: false  # [win]
   skip: false  # [linux]
-  skip: false   # [osx]
+  skip: false  # [osx]
 
   run_exports:
     # remove symbols at .90 patch releases just before minor versions?
@@ -47,7 +47,7 @@ requirements:
     - libiconv
     - gstreamer         {{ version }}
     - gst-plugins-base  {{ version }}
-    - gobject-introspection              
+    - gobject-introspection
     - glib
     - libintl-devel                      # [not linux]
     - libxcb                             # [linux]

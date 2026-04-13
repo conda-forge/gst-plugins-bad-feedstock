@@ -1,5 +1,5 @@
 diff --git a/sys/nvcodec/gstcudamemorycopy.c b/sys/nvcodec/gstcudamemorycopy.c
-index a1d324b538..29ac7fbe11 100644
+index 4d159b623b..1b1b892b28 100644
 --- a/sys/nvcodec/gstcudamemorycopy.c
 +++ b/sys/nvcodec/gstcudamemorycopy.c
 @@ -50,7 +50,7 @@
@@ -167,7 +167,7 @@ index a1d324b538..29ac7fbe11 100644
  #endif
  
 @@ -926,7 +926,7 @@ gst_cuda_memory_copy_transform (GstBaseTransform * trans, GstBuffer * inbuf,
-   } else if (self->gl_context && gst_is_gl_memory_pbo (in_mem)) {
+   } else if (gst_is_gl_memory_pbo (in_mem)) {
      in_type = GST_CUDA_BUFFER_COPY_GL;
  #endif
 -#ifdef G_OS_WIN32
@@ -176,7 +176,7 @@ index a1d324b538..29ac7fbe11 100644
        && gst_d3d11_memory_get_texture_desc (GST_D3D11_MEMORY_CAST (in_mem),
            &desc) && desc.Usage == D3D11_USAGE_DEFAULT) {
 @@ -946,7 +946,7 @@ gst_cuda_memory_copy_transform (GstBaseTransform * trans, GstBuffer * inbuf,
-   } else if (self->gl_context && gst_is_gl_memory_pbo (out_mem)) {
+   } else if (gst_is_gl_memory_pbo (out_mem)) {
      out_type = GST_CUDA_BUFFER_COPY_GL;
  #endif
 -#ifdef G_OS_WIN32
@@ -221,7 +221,7 @@ index a1d324b538..29ac7fbe11 100644
  #endif
  #ifdef HAVE_CUDA_NVMM
 diff --git a/sys/nvcodec/gstnvdecoder.cpp b/sys/nvcodec/gstnvdecoder.cpp
-index b386021835..3d5608437a 100644
+index 0f252b6001..e9186dc36a 100644
 --- a/sys/nvcodec/gstnvdecoder.cpp
 +++ b/sys/nvcodec/gstnvdecoder.cpp
 @@ -55,7 +55,7 @@
@@ -251,16 +251,16 @@ index b386021835..3d5608437a 100644
        case GST_NV_DECODER_OUTPUT_TYPE_D3D11:
          ret = gst_nv_decoder_copy_frame_to_d3d11 (decoder, surface,
              frame->output_buffer);
-@@ -1285,7 +1285,7 @@ gst_nv_decoder_check_device_caps (GstCudaContext * context,
-   std::set < std::string > formats;
-   std::set < std::string > planar_formats;
-   CUcontext cuda_ctx = gst_cuda_context_get_handle (context);
+@@ -1301,7 +1301,7 @@ gst_nv_decoder_check_device_caps (GstCudaContext * context,
+       }
+     }
+   }
 -#ifdef G_OS_WIN32
 +#ifdef HAVE_D3D11
    gboolean is_stateless = FALSE;
  
    switch (codec) {
-@@ -1324,7 +1324,7 @@ gst_nv_decoder_check_device_caps (GstCudaContext * context,
+@@ -1340,7 +1340,7 @@ gst_nv_decoder_check_device_caps (GstCudaContext * context,
            gst_caps_features_new_single_static_str
            (GST_CAPS_FEATURE_MEMORY_CUDA_MEMORY));
  
@@ -269,7 +269,7 @@ index b386021835..3d5608437a 100644
        if (is_stateless) {
          GstCaps *d3d11_caps =
              gst_caps_from_string (GST_VIDEO_CAPS_MAKE ("I420"));
-@@ -1506,7 +1506,7 @@ gst_nv_decoder_check_device_caps (GstCudaContext * context,
+@@ -1522,7 +1522,7 @@ gst_nv_decoder_check_device_caps (GstCudaContext * context,
      }
  #endif
  
@@ -278,7 +278,7 @@ index b386021835..3d5608437a 100644
      if (is_stateless) {
        format_str.clear ();
  
-@@ -1630,7 +1630,7 @@ gst_nv_decoder_handle_set_context (GstNvDecoder * decoder,
+@@ -1660,7 +1660,7 @@ gst_nv_decoder_handle_set_context (GstNvDecoder * decoder,
    }
  #endif
  
@@ -287,7 +287,7 @@ index b386021835..3d5608437a 100644
    if (gst_d3d11_handle_set_context_for_adapter_luid (element, context,
            decoder->adapter_luid, (GstD3D11Device **) & decoder->d3d11_device)) {
      return;
-@@ -1660,7 +1660,7 @@ gst_nv_decoder_handle_query (GstNvDecoder * decoder, GstElement * element,
+@@ -1690,7 +1690,7 @@ gst_nv_decoder_handle_query (GstNvDecoder * decoder, GstElement * element,
    }
  #endif
  
@@ -296,7 +296,7 @@ index b386021835..3d5608437a 100644
    if (gst_d3d11_handle_context_query (element,
            query, (GstD3D11Device *) decoder->d3d11_device)) {
      return TRUE;
-@@ -1770,7 +1770,7 @@ gst_nv_decoder_ensure_gl_context (GstNvDecoder * decoder, GstElement * videodec)
+@@ -1800,7 +1800,7 @@ gst_nv_decoder_ensure_gl_context (GstNvDecoder * decoder, GstElement * videodec)
  }
  #endif
  
@@ -305,7 +305,7 @@ index b386021835..3d5608437a 100644
  static gboolean
  gst_nv_decoder_ensure_d3d11_output (GstNvDecoder * self, GstElement * element)
  {
-@@ -1918,7 +1918,7 @@ gst_nv_decoder_negotiate (GstNvDecoder * decoder,
+@@ -1948,7 +1948,7 @@ gst_nv_decoder_negotiate (GstNvDecoder * decoder,
            available_types |= GST_NV_DECODER_OUTPUT_TYPE_D3D12;
          }
  #endif
@@ -314,7 +314,7 @@ index b386021835..3d5608437a 100644
          if (features && gst_caps_features_contains (features,
                  GST_CAPS_FEATURE_MEMORY_D3D11_MEMORY)) {
            GST_DEBUG_OBJECT (videodec, "found D3D11 memory feature");
-@@ -1970,7 +1970,7 @@ gst_nv_decoder_negotiate (GstNvDecoder * decoder,
+@@ -2000,7 +2000,7 @@ gst_nv_decoder_negotiate (GstNvDecoder * decoder,
    }
  #endif
  
@@ -323,7 +323,7 @@ index b386021835..3d5608437a 100644
    if (decoder->output_type == GST_NV_DECODER_OUTPUT_TYPE_D3D11 &&
        !gst_nv_decoder_ensure_d3d11_output (decoder, GST_ELEMENT (videodec))) {
      GST_WARNING_OBJECT (videodec, "D3D11 setup failed");
-@@ -2019,7 +2019,7 @@ gst_nv_decoder_negotiate (GstNvDecoder * decoder,
+@@ -2049,7 +2049,7 @@ gst_nv_decoder_negotiate (GstNvDecoder * decoder,
            gst_caps_features_new_single (GST_CAPS_FEATURE_MEMORY_D3D12_MEMORY));
        break;
  #endif
@@ -332,7 +332,7 @@ index b386021835..3d5608437a 100644
      case GST_NV_DECODER_OUTPUT_TYPE_D3D11:
        gst_caps_set_features (state->caps, 0,
            gst_caps_features_new_single_static_str
-@@ -2169,7 +2169,7 @@ gst_nv_decoder_ensure_gl_pool (GstNvDecoder * decoder, GstQuery * query)
+@@ -2199,7 +2199,7 @@ gst_nv_decoder_ensure_gl_pool (GstNvDecoder * decoder, GstQuery * query)
  }
  #endif
  
@@ -341,7 +341,7 @@ index b386021835..3d5608437a 100644
  static gboolean
  gst_nv_decoder_ensure_d3d11_pool (GstNvDecoder * self, GstElement * element,
      GstQuery * query)
-@@ -2335,7 +2335,7 @@ gst_nv_decoder_decide_allocation (GstNvDecoder * decoder,
+@@ -2365,7 +2365,7 @@ gst_nv_decoder_decide_allocation (GstNvDecoder * decoder,
      case GST_NV_DECODER_OUTPUT_TYPE_SYSTEM:
        /* GstVideoDecoder will take care this case */
        break;
