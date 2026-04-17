@@ -64,23 +64,16 @@ requirements:
     - zlib
     - expat
     - if: linux
-      then: xorg-xorgproto
-    - if: linux
-      then: xorg-libx11
-    - if: linux
-      then: xorg-libxfixes
-    - if: linux
-      then: xorg-libxext
-    - if: linux
-      then: xorg-libx11
-    - if: linux
-      then: xorg-libxrender
-    - if: linux
-      then: xorg-libxdamage
-    - if: linux
-      then: xorg-libxxf86vm
-    - if: linux
-      then: xorg-libxau
+      then: 
+        - xorg-xorgproto
+        - xorg-libx11
+        - xorg-libxfixes
+        - xorg-libxext
+        - xorg-libx11
+        - xorg-libxrender
+        - xorg-libxdamage
+        - xorg-libxxf86vm
+        - xorg-libxau
     - if: win
       then: liblzma-devel
   run:
@@ -92,59 +85,38 @@ requirements:
 tests:
   - script:
       - if: linux
-        then: test -f $PREFIX/lib/gstreamer-1.0/libgstfbdevsink${SHLIB_EXT}
+        then: 
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstfbdevsink${SHLIB_EXT}
       - if: not win
-        then: test -f $PREFIX/lib/gstreamer-1.0/libgstaiff${SHLIB_EXT}
-      - if: not win
-        then: test -f $PREFIX/lib/gstreamer-1.0/libgstaudiovisualizers${SHLIB_EXT}
-      - if: not win
-        then: test -f $PREFIX/lib/gstreamer-1.0/libgstcoloreffects${SHLIB_EXT}
-      - if: not win
-        then: test -f $PREFIX/lib/gstreamer-1.0/libgstgeometrictransform${SHLIB_EXT}
-      - if: not win
-        then: test -f $PREFIX/lib/gstreamer-1.0/libgstjpegformat${SHLIB_EXT}
-      - if: not win
-        then: test -f $PREFIX/lib/gstreamer-1.0/libgstmpegpsmux${SHLIB_EXT}
-      - if: not win
-        then: test -f $PREFIX/lib/gstreamer-1.0/libgstrtmp2${SHLIB_EXT}
-      - if: not win
-        then: test -f $PREFIX/lib/gstreamer-1.0/libgstsndfile${SHLIB_EXT}
-      - if: not win
-        then: test -f $PREFIX/lib/gstreamer-1.0/libgsttranscode${SHLIB_EXT}
-      - if: not win
-        then: test -f $PREFIX/lib/gstreamer-1.0/libgstvideofiltersbad${SHLIB_EXT}
-      - if: not win
-        then: test -f $PREFIX/lib/gstreamer-1.0/libgstvideoparsersbad${SHLIB_EXT}
+        then: 
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstaiff${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstaudiovisualizers${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstcoloreffects${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstgeometrictransform${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstjpegformat${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstmpegpsmux${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstrtmp2${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstsndfile${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgsttranscode${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstvideofiltersbad${SHLIB_EXT}
+            - test -f $PREFIX/lib/gstreamer-1.0/libgstvideoparsersbad${SHLIB_EXT}
       - if: win
-        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstaiff.dll exit 1
-      - if: win
-        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstaudiovisualizers.dll exit 1
-      - if: win
-        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstcoloreffects.dll exit 1
-      - if: win
-        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstd3d.dll exit 1
-      - if: win
-        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstdirectsoundsrc.dll exit 1
-      - if: win
-        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstgeometrictransform.dll exit 1
-      - if: win
-        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstjpegformat.dll exit 1
-      - if: win
-        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstmpegpsmux.dll exit 1
-      - if: win
-        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstrtmp2.dll exit 1
-      - if: win
-        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstsndfile.dll exit 1
-      - if: win
-        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gsttranscode.dll exit 1
-      - if: win
-        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstvideofiltersbad.dll exit 1
-      - if: win
-        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstvideoparsersbad.dll exit 1
-      - if: win
-        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstwasapi.dll exit 1
-      - if: win
-        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstnvcodec.dll exit 1
+        then: 
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstaiff.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstaudiovisualizers.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstcoloreffects.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstd3d.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstdirectsoundsrc.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstgeometrictransform.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstjpegformat.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstmpegpsmux.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstrtmp2.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstsndfile.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gsttranscode.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstvideofiltersbad.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstvideoparsersbad.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstwasapi.dll exit 1
+            - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstnvcodec.dll exit 1
       - gst-inspect-1.0 --plugin audiovisualizers
 
 about:
