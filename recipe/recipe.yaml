@@ -45,8 +45,7 @@ requirements:
     - libiconv
     - gstreamer         1.26.11.*
     - gst-plugins-base  1.26.11.*
-    - if: linux
-      then: gobject-introspection
+    - gobject-introspection
     - glib
     - if: not linux
       then: libintl-devel
