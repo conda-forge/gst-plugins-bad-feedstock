@@ -34,6 +34,7 @@ requirements:
     # The build glib-mkenums is required in cross-compilation builds
     - glib  # [build_platform != target_platform]
     - setuptools
+    - gobject-introspection              # [linux]
   host:
     - libgl-devel                        # [linux]
     - libegl-devel                       # [linux]
