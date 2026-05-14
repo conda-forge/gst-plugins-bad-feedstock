@@ -21,7 +21,3 @@ provider:
   linux_ppc64le: azure
   osx_arm64: default
 test: native_and_emulated
-azure:
-  # toggle for storing the conda build_artifacts directory (including the
-  # built packages) as an Azure pipeline artifact that can be downloaded
-  store_build_artifacts: false
