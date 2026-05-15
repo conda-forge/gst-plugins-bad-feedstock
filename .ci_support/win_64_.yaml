@@ -12,10 +12,6 @@ expat:
 - '2'
 glib:
 - '2'
-gst_plugins_base:
-- '1.26'
-gstreamer:
-- '1.26'
 libiconv:
 - '1'
 liblzma_devel:
