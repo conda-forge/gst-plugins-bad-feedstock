@@ -37,7 +37,7 @@ requirements:
     - setuptools
     - gobject-introspection
     - if: unix
-      then: gst-plugins-base
+      then: gst-plugins-base  ==${{ version }}
   host:
     - if: linux
       then:
@@ -56,8 +56,8 @@ requirements:
         - xorg-libxau
         - xorg-libxxf86vm
     - libiconv
-    - gstreamer
-    - gst-plugins-base
+    - gstreamer         ==${{ version }}
+    - gst-plugins-base  ==${{ version }}
     - gobject-introspection
     - glib
     - if: not linux
@@ -75,7 +75,7 @@ requirements:
       then: liblzma-devel
   run:
     # We want to pin harder than the run_export from gstreamer
-    - gstreamer
+    - gstreamer     ==${{ version }}
   run_exports:
     - ${{ pin_subpackage('gst-plugins-bad', upper_bound='x.x') }}
 
