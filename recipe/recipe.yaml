@@ -16,7 +16,7 @@ source:
     - disable_d3d11_in_nvcodec.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -24,7 +24,7 @@ requirements:
     - ${{ stdlib('c') }}
     - ${{ compiler('cxx') }}
     - gettext-tools
-    - pkg-config
+    - pkgconfig
     - perl
     - if: unix
       then: libtool
@@ -61,7 +61,7 @@ requirements:
     - gobject-introspection
     - glib
     - if: not linux
-      then: libintl-devel
+      then: libintl-devel <1
     - openssl
     - libxml2-devel
     - libsndfile
